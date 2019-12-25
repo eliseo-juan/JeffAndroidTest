@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">JeffAndroidTest</string>
+    <string name="app_name">Jeff Weather</string>
+    <string name="main_search_your_city">Buscar</string>
 </resources>

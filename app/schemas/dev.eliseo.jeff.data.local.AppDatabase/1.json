@@ -1,0 +1,140 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "2389c46a75aedf76ff9a4038f0439fe6",
+    "entities": [
+      {
+        "tableName": "Geoname",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geonameId` INTEGER NOT NULL, `name` TEXT, `toponymName` TEXT, `countryName` TEXT, `lat` REAL, `lng` REAL, `east` REAL, `south` REAL, `north` REAL, `west` REAL, PRIMARY KEY(`geonameId`))",
+        "fields": [
+          {
+            "fieldPath": "geonameId",
+            "columnName": "geonameId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "toponymName",
+            "columnName": "toponymName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "countryName",
+            "columnName": "countryName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lat",
+            "columnName": "lat",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lng",
+            "columnName": "lng",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bbox.east",
+            "columnName": "east",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bbox.south",
+            "columnName": "south",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bbox.north",
+            "columnName": "north",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bbox.west",
+            "columnName": "west",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "geonameId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GeonameLog",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geonameId` INTEGER NOT NULL, `date` INTEGER NOT NULL, PRIMARY KEY(`geonameId`))",
+        "fields": [
+          {
+            "fieldPath": "geonameId",
+            "columnName": "geonameId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "geonameId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GeonameSearchResult",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`query` TEXT NOT NULL, `geonameIds` TEXT NOT NULL, PRIMARY KEY(`query`))",
+        "fields": [
+          {
+            "fieldPath": "query",
+            "columnName": "query",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "geonameIds",
+            "columnName": "geonameIds",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "query"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2389c46a75aedf76ff9a4038f0439fe6')"
+    ]
+  }
+}
