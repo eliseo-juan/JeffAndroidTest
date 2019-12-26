@@ -8,17 +8,16 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp">
+        android:layout_height="192dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="left|bottom"
-            app:expandedTitleMarginBottom="44dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            app:expandedTitleMarginBottom="48dp"
+            app:expandedTitleMarginEnd="16dp"
+            app:expandedTitleMarginStart="16dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -39,43 +38,45 @@
             android:id="@+id/cardViewMainContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:transitionName="container"
-            android:layout_margin="16dp">
+            android:layout_margin="16dp"
+            android:transitionName="container">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/editTextMainSearch"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:transitionName="searchEditText"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:hint="@string/main_search_your_city"
                     android:padding="16dp"
-                    android:background="@null"
-                    android:hint="@string/main_search_your_city" />
+                    android:clickable="true"
+                    android:transitionName="searchEditText"
+                    android:focusable="true" />
 
                 <ImageView
+                    android:id="@+id/imageViewMainDivider"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:src="@color/colorDivider"/>
+                    android:layout_height="1px"
+                    android:alpha="0.13"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:src="?colorOnSurface" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewMain"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:transitionName="recyclerView"
+                    android:layout_height="wrap_content"
                     android:clipToPadding="false"
+                    android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:orientation="vertical"
+                    android:transitionName="recyclerView"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:listitem="@layout/row_geoname"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:listitem="@layout/row_geoname" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>

@@ -46,7 +46,7 @@ class TemperatureBar : FrameLayout {
         val widthAnimator = ValueAnimator.ofInt(getWidth(fromTemperature), getWidth(toTemperature))
         widthAnimator.addUpdateListener { animation ->
             val animatedValue = animation.animatedValue as Int
-            this.barImageView?.layoutParams?.width = animatedValue
+            this.barImageView?.layoutParams?.height = animatedValue
             this.barImageView?.requestLayout()
         }
 
@@ -63,12 +63,12 @@ class TemperatureBar : FrameLayout {
         barImageView?.visibility = View.VISIBLE
     }
 
-    fun setTemperature(temperature: Int) {
-        loadAnimation(this.temperature, temperature)
+    fun setTemperature(temperature: Int?) {
+        temperature?.let { loadAnimation(this.temperature, it) }
     }
 
     private fun getMaxValue(): Int {
-        return this.width
+        return this.height
     }
     private fun getWidth(temperature: Int): Int {
         val fraction: Float = ((temperature.toFloat() - MIN_TEMP.toFloat()) / (MAX_TEMP.toFloat() - MIN_TEMP.toFloat()))
@@ -79,13 +79,13 @@ class TemperatureBar : FrameLayout {
     private fun getColor(temperature: Int) : Int {
         return when {
             temperature >= 30 -> ContextCompat.getColor(context, R.color.tempHigh)
-            temperature >= 16 -> ContextCompat.getColor(context, R.color.tempMedium)
+            temperature >= 14 -> ContextCompat.getColor(context, R.color.tempMedium)
             else -> ContextCompat.getColor(context, R.color.tempLow)
         }
     }
 
     companion object {
-        private const val MIN_TEMP = 0
-        private const val MAX_TEMP = 40
+        private const val MIN_TEMP = -10
+        private const val MAX_TEMP = 45
     }
 }

@@ -10,8 +10,6 @@ import dev.eliseo.jeff.data.model.Geoname
 
 class MainViewModel : ViewModel() {
 
-
-    val searchQuery = MutableLiveData<String>()
     val geonameSuggestionList: LiveData<List<Geoname>> = Repository.recentGeoname()
 
 }

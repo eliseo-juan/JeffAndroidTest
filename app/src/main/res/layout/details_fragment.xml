@@ -8,22 +8,14 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="top"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -43,54 +35,151 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/textViewDetailsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceHeadline5"
+                        tools:text="@tools:sample/cities" />
+
+                    <TextView
+                        android:id="@+id/textViewDetailsSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBody1"
+                        tools:text="@tools:sample/cities" />
+
+                    <TextView
+                        android:id="@+id/textViewDetailsBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceCaption"
+                        tools:text="@tools:sample/cities" />
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <dev.eliseo.jeff.ui.common.TemperatureBar
-                        android:layout_width="match_parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="@+id/textViewDetailsTemperature"
-                        app:layout_constraintRight_toRightOf="@+id/textViewDetailsTemperature"
-                        android:layout_height="16dp"/>
+                        android:id="@+id/temperatureBarDetails"
+                        android:layout_width="8dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toTopOf="@+id/imageViewDetailsDivider"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textViewDetailsTemperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:textAppearance="?textAppearanceHeadline3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textAppearance="?textAppearanceHeadline4"
+                        app:layout_constraintBottom_toTopOf="@+id/imageViewDetailsDivider"
+                        app:layout_constraintLeft_toRightOf="@+id/temperatureBarDetails"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0"
+                        app:layout_constraintVertical_chainStyle="packed"
                         tools:text="21º" />
 
                     <TextView
                         android:id="@+id/textViewDetailsClouds"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
-                        android:textAppearance="?textAppearanceBody1"
+                        android:layout_marginBottom="8dp"
+                        android:textAppearance="?textAppearanceBody2"
+                        app:layout_constraintBottom_toTopOf="@id/imageViewDetailsDivider"
                         app:layout_constraintLeft_toRightOf="@+id/textViewDetailsTemperature"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/imageViewDetailsDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:alpha="0.13"
+                        android:src="?colorOnSurface"
+                        app:layout_constraintBottom_toTopOf="@+id/chipGroupDetailsWeather"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDetailsTemperature" />
+
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupDetailsWeather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        app:chipSpacingHorizontal="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewDetailsDivider"
+                        app:singleLine="false">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipViewDetailsHumidity"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:textAppearance="?textAppearanceCaption"
+                            app:chipIcon="@drawable/ic_water_24dp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipViewDetailsWindSpeed"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:textAppearance="?textAppearanceCaption"
+                            app:chipIcon="@drawable/ic_round_toys_24" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipViewDetailsDewPoint"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:textAppearance="?textAppearanceCaption"
+                            app:chipIcon="@drawable/ic_round_eco_24" />
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <TextView
+                        android:id="@+id/textViewDetailsPlaceholder"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:padding="8dp"
-                        app:chipSpacing="8dp"
+                        android:background="?colorSurface"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="@string/no_weather_observations"
+                        android:textAppearance="?textAppearanceCaption"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@+id/textViewDetailsTemperature"
+                        app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewDetailsClouds"
-                        app:singleLine="false" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,18 +199,29 @@
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDetailsStations"
                         app:layout_constraintDimensionRatio="1.77"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:context=".MapsActivity" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewDetailsStations"
+                        android:layout_width="0dp"
+                        android:nestedScrollingEnabled="true"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/row_weather_observation"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/mapDetailStations"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

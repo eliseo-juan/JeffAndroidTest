@@ -39,17 +39,12 @@ class MainFragment : Fragment() {
 
         viewModel.geonameSuggestionList.observe(viewLifecycleOwner, Observer { resource ->
             recyclerViewMain.visibility = if (resource.isNotEmpty()) View.VISIBLE else View.GONE
+            imageViewMainDivider.visibility = if (resource.isNotEmpty()) View.VISIBLE else View.GONE
             adapter.submitList(resource)
         })
 
-        editTextMainSearch.addTextChangedListener {
-            viewModel.searchQuery.value = it.toString()
-        }
-
-        editTextMainSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                navigateToSearch()
-            }
+        editTextMainSearch.setOnClickListener {
+            navigateToSearch()
         }
 
         (activity as AppCompatActivity).setSupportActionBar(toolbar)

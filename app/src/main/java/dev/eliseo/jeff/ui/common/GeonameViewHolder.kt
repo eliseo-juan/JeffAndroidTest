@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.row_geoname.view.*
 
 class GeonameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val titleTextView = itemView.textViewRowsuggestionGeonameTitle
-    private val subtitleTextView = itemView.textViewRowsuggestionGeonameSubtitle
+    private val titleTextView = itemView.textViewRowSuggestionGeonameTitle
+    private val subtitleTextView = itemView.textViewRowSuggestionGeonameSubtitle
 
     fun bind(geoname: Geoname){
         titleTextView.text = geoname.name

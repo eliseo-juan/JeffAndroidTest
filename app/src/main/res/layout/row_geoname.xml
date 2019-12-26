@@ -13,11 +13,11 @@
 
 
     <TextView
-        android:id="@+id/textViewRowsuggestionGeonameTitle"
+        android:id="@+id/textViewRowSuggestionGeonameTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRowsuggestionGeonameSubtitle"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRowSuggestionGeonameSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRowsuggestionGeonameSubtitle"
+        android:id="@+id/textViewRowSuggestionGeonameSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?textAppearanceCaption"
@@ -33,6 +33,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="@tools:sample/us_zipcodes"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRowsuggestionGeonameTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRowSuggestionGeonameTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

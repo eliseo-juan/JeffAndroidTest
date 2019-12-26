@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Jeff Weather</string>
     <string name="main_search_your_city">Buscar</string>
+    <string name="no_weather_observations">No se han encontado estaciones metereológicas</string>
 </resources>
