@@ -51,6 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
+                    android:textAppearance="?textAppearanceBody1"
                     android:hint="@string/main_search_your_city"
                     android:padding="16dp"
                     android:clickable="true"

@@ -36,7 +36,7 @@ object Repository {
         return object : NetworkBoundResource<List<Geoname>, GeonameResponse>() {
 
             override fun saveCallResult(item: GeonameResponse) {
-                val geonameIds = item.geonames.mapNotNull { it.geonameId }
+                val geonameIds = item.geonames.map { it.geonameId }
                 val searchResult = GeonameSearchResult(query, geonameIds)
                 db.runInTransaction {
                     db.geonameDao().insert(item.geonames)

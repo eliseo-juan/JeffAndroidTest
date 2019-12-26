@@ -65,7 +65,7 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         mapMarkers = Transformations.map(weatherObservations) { resource ->
             return@map when (resource?.status) {
                 Status.LOADING -> Resource.loading<List<MarkerOptions>>(null)
-                Status.SUCCESS -> Resource.success(resource?.data?.filter {
+                Status.SUCCESS -> Resource.success(resource.data?.filter {
                     it.lat != null && it.lng != null
                 }?.map {
                     MarkerOptions().position(LatLng(it.lat!!, it.lng!!)).title(it.stationName)

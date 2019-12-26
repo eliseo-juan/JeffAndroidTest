@@ -17,7 +17,9 @@ import androidx.transition.TransitionInflater
 import dev.eliseo.jeff.R
 import dev.eliseo.jeff.data.manager.Status
 import dev.eliseo.jeff.data.model.Geoname
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.search_fragment.*
+import kotlinx.android.synthetic.main.search_fragment.toolbar
 
 
 class SearchFragment : Fragment() {
@@ -44,6 +46,7 @@ class SearchFragment : Fragment() {
             viewModel.setQuery(it.toString())
         }
 
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
         toolbar.setNavigationOnClickListener {
             (activity as AppCompatActivity).onBackPressed()
@@ -60,22 +63,22 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         adapter = SearchListAdapter {
             showGeoname(it)
         }
         recyclerViewSearch.adapter = adapter
 
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+
         viewModel.geonameSearchList.observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                //TODO
+                //TODO Loading/Error
                 Status.SUCCESS -> adapter.submitList(it.data)
             }
         })
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
     }
 
-    fun showGeoname(geoname: Geoname) {
+    private fun showGeoname(geoname: Geoname) {
         view?.findNavController()
             ?.navigate(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(geoname.geonameId))
     }

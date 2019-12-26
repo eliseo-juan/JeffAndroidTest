@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import dev.eliseo.jeff.App
-import dev.eliseo.jeff.data.local.converters.DateConverter
+import dev.eliseo.jeff.data.local.converters.DateTypeConverter
 import dev.eliseo.jeff.data.local.converters.IntListTypeConverter
 import dev.eliseo.jeff.data.local.dao.GeonameDao
 import dev.eliseo.jeff.data.local.dao.GeonameLogDao
@@ -19,7 +19,7 @@ import dev.eliseo.jeff.data.model.GeonameSearchResult
     GeonameLog::class,
     GeonameSearchResult::class
 ], version = AppDatabaseMigrations.version)
-@TypeConverters(DateConverter::class, IntListTypeConverter::class)
+@TypeConverters(DateTypeConverter::class, IntListTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun geonameDao(): GeonameDao

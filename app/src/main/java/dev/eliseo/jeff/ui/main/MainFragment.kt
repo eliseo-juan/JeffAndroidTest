@@ -16,14 +16,24 @@ import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: SuggestionListAdapter
+    private lateinit var viewModel: MainViewModel
+    private lateinit var adapter: SuggestionListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        editTextMainSearch.setOnClickListener {
+            navigateToSearch()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,12 +51,6 @@ class MainFragment : Fragment() {
             imageViewMainDivider.visibility = if (resource.isNotEmpty()) View.VISIBLE else View.GONE
             adapter.submitList(resource)
         })
-
-        editTextMainSearch.setOnClickListener {
-            navigateToSearch()
-        }
-
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
     }
 
     private fun navigateToSearch() {
@@ -64,7 +68,7 @@ class MainFragment : Fragment() {
             )
     }
 
-    fun showGeoname(geoname: Geoname) {
+    private fun showGeoname(geoname: Geoname) {
         view?.findNavController()
             ?.navigate(MainFragmentDirections.actionMainFragmentToDetailsFragment(geoname.geonameId))
     }

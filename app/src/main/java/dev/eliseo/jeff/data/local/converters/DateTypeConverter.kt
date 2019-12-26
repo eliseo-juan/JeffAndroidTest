@@ -3,7 +3,7 @@ package dev.eliseo.jeff.data.local.converters
 import androidx.room.TypeConverter
 import java.util.*
 
-class DateConverter {
+class DateTypeConverter {
 
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {

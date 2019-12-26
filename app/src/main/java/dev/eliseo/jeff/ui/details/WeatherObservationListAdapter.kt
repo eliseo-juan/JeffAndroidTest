@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import dev.eliseo.jeff.data.model.WeatherObservation
 import dev.eliseo.jeff.ui.common.WeatherObservationViewHolder
 
-class WeatherObservationListAdapter() :
+class WeatherObservationListAdapter :
     ListAdapter<WeatherObservation, WeatherObservationViewHolder>(WeatherObservation.diffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherObservationViewHolder {

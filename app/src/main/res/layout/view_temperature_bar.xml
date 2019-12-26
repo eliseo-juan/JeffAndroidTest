@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.common.TemperatureBar"
     android:background="@color/colorDivider"
+    android:backgroundTint="@color/colorDivider"
     android:orientation="vertical">
 
     <ImageView

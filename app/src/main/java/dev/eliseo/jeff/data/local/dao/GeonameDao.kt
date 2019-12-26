@@ -9,9 +9,6 @@ import dev.eliseo.jeff.data.model.Geoname
 @Dao
 abstract class GeonameDao {
 
-    @Query("SELECT * FROM geoname")
-    abstract fun getAll(): LiveData<List<Geoname>>
-
     @Query("SELECT DISTINCT * FROM geoname INNER JOIN geonamelog ON geonamelog.geonameId = geoname.geonameId ORDER BY geonamelog.date DESC")
     abstract fun getRecent(): LiveData<List<Geoname>>
 

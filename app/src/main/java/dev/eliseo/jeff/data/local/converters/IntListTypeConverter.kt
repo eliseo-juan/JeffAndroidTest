@@ -7,7 +7,7 @@ import dev.eliseo.jeff.util.JsonUtils
 
     class IntListTypeConverter {
 
-    val adapter: JsonAdapter<List<Int>> = JsonUtils.moshi.adapter(Types.newParameterizedType(List::class.java, Integer::class.java))
+    private val adapter: JsonAdapter<List<Int>> = JsonUtils.moshi.adapter(Types.newParameterizedType(List::class.java, Integer::class.java))
 
     @TypeConverter
     fun getDBValue(model: List<Int>?): String? {
