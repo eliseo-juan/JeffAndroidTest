@@ -126,8 +126,6 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap?) {
         googleMap?.uiSettings?.apply {
-            isScrollGesturesEnabled = false
-            isRotateGesturesEnabled = false
             isMyLocationButtonEnabled = false
             isIndoorLevelPickerEnabled = false
             isCompassEnabled = false
