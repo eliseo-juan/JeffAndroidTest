@@ -1,8 +1,6 @@
 package dev.eliseo.jeff.ui.details
 
-import androidx.arch.core.util.Function
 import androidx.lifecycle.*
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
@@ -65,14 +63,15 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         mapMarkers = Transformations.map(weatherObservations) { resource ->
-            return@map when (resource.status) {
+            return@map when (resource?.status) {
                 Status.LOADING -> Resource.loading<List<MarkerOptions>>(null)
-                Status.SUCCESS -> Resource.success(resource.data?.filter {
+                Status.SUCCESS -> Resource.success(resource?.data?.filter {
                     it.lat != null && it.lng != null
                 }?.map {
                     MarkerOptions().position(LatLng(it.lat!!, it.lng!!)).title(it.stationName)
                 })
                 Status.ERROR -> Resource.error<List<MarkerOptions>>(resource.message, null)
+                else -> Resource.loading<List<MarkerOptions>>(null)
             }
         }
 
@@ -84,11 +83,11 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         showPlaceholder.addSource(weatherObservations) {
-            showPlaceholder.value = (it.status == Status.SUCCESS && it.data?.isEmpty() == true)
+            showPlaceholder.value = (it?.status == Status.SUCCESS && it.data?.isEmpty() == true)
         }
 
         temperature.addSource(weatherObservations) { resource ->
-            resource.data?.mapNotNull { it.temperature }?.average()?.takeIf { !it.isNaN() }
+            resource?.data?.mapNotNull { it.temperature }?.average()?.takeIf { !it.isNaN() }
                 ?.roundToInt()
                 ?.let { temperature.value = it }
         }
@@ -103,7 +102,7 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         humidityText.addSource(weatherObservations) { resource ->
-            resource.data?.mapNotNull { it.humidity }?.average()?.takeIf { !it.isNaN() }
+            resource?.data?.mapNotNull { it.humidity }?.average()?.takeIf { !it.isNaN() }
                 ?.roundToInt()
                 ?.let { humidityText.value = String.format("%d%%", it) }
         }
@@ -113,7 +112,7 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         cloudText.addSource(weatherObservations) { resource ->
-            resource.data?.mapNotNull { it.clouds }?.firstOrNull()
+            resource?.data?.mapNotNull { it.clouds }?.firstOrNull()
                 ?.let { cloudText.value = it }
         }
 
@@ -122,7 +121,7 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         windSpeedText.addSource(weatherObservations) { resource ->
-            resource.data?.mapNotNull { it.windSpeed?.toDoubleOrNull() }?.average()
+            resource?.data?.mapNotNull { it.windSpeed?.toDoubleOrNull() }?.average()
                 ?.takeIf { !it.isNaN() }?.roundToInt()
                 ?.let { windSpeedText.value = String.format("%dkm/h", it) }
         }
@@ -132,7 +131,7 @@ class DetailsViewModel(val geonameId: Int) : ViewModel() {
         }
 
         dewPointText.addSource(weatherObservations) { resource ->
-            resource.data?.mapNotNull { it.dewPoint?.toDoubleOrNull() }?.average()
+            resource?.data?.mapNotNull { it.dewPoint?.toDoubleOrNull() }?.average()
                 ?.takeIf { !it.isNaN() }?.roundToInt()
                 ?.let { dewPointText.value = String.format("%s%%", it) }
         }

@@ -14,11 +14,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.MarkerOptions
 import dev.eliseo.jeff.R
 import kotlinx.android.synthetic.main.details_fragment.*
-import kotlinx.android.synthetic.main.details_fragment.toolbar
-import kotlinx.android.synthetic.main.search_fragment.*
 
 class DetailsFragment : Fragment(), OnMapReadyCallback {
 
@@ -144,7 +141,10 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         })
 
         viewModel.mapBounds.observe(viewLifecycleOwner, Observer {
-            googleMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(it, 16))
+            try {
+                googleMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(it, 16))
+            } catch (ignore: NullPointerException) {
+            }
         })
     }
 

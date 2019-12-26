@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import dev.eliseo.jeff.App
 import dev.eliseo.jeff.R
+import dev.eliseo.jeff.util.ConnectivityState
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +17,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
+        setupConnectivityManager()
         negotiateDeviceDarkMode()
+    }
+
+    private fun setupConnectivityManager() {
+
+        App.connectivityLiveData.observe(this, Observer { connectivityState ->
+            when (connectivityState) {
+                ConnectivityState.Connected -> hideConnectionIssue()
+                ConnectivityState.Disconnected -> showConnectionIssue()
+                null -> hideConnectionIssue()
+            }
+        })
+    }
+
+    private fun showConnectionIssue() {
+        //TODO Not implemented
+    }
+    private fun hideConnectionIssue() {
+        //TODO Not implemented
     }
 
     private fun negotiateDeviceDarkMode() {

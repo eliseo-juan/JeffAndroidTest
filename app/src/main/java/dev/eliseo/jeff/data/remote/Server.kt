@@ -5,9 +5,8 @@ import dev.eliseo.jeff.data.remote.util.LiveDataCallAdapterFactory
 import dev.eliseo.jeff.util.JsonUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.*
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 object Server {
 

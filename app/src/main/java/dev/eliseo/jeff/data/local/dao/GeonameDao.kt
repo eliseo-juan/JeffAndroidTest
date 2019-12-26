@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.room.*
 import dev.eliseo.jeff.data.model.Geoname
-import kotlin.Comparator
 
 @Dao
 abstract class GeonameDao {

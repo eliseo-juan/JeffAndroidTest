@@ -2,7 +2,6 @@ package dev.eliseo.jeff.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import dev.eliseo.jeff.data.model.Geoname
 import dev.eliseo.jeff.data.model.GeonameSearchResult
 
 @Dao
